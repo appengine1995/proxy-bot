@@ -6,7 +6,7 @@
 
 ## 安装&运行
 ```bash
-git clone https://github.com/heinu123/proxybot.git && cd proxybot
+git clone https://github.com/heinu123/proxy-bot.git && cd proxybot
 pip3 install -r requirements.txt
 python3 mian.py
 ```
