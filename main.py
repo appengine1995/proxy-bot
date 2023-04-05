@@ -12,7 +12,7 @@ proxys.init()
 
 @bot.message_handler(commands=["start", "help"])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "我是属于 @heinuhome 的代理机器人👋\n命令列表:\n/help - 帮助\n/proxy - 获取v2ray代理(带clash订阅转换)\n/tgproxy - 获取telegram直连(mtproxy)代理\n/sign - 签到\n/info - 获取当前积分\n/list - 获取当前代理池数量\n/add - 向代理池添加代理[admin]\n/rm - 删除代理池的某个代理[admin]\n/getlist - 获取代理池全部内容[admin]\n/add_integral - 增加某个用户的积分[admin]\n/deduct_integral - 扣除某个用户的积分[admin]")
+    bot.send_message(message.chat.id, "命令列表:\n/help - 帮助\n/proxy - 获取v2ray代理(带clash订阅转换)\n/tgproxy - 获取telegram直连(mtproxy)代理\n/sign - 签到\n/info - 获取当前积分\n/list - 获取当前代理池数量\n/add - 向代理池添加代理[admin]\n/rm - 删除代理池的某个代理[admin]\n/getlist - 获取代理池全部内容[admin]\n/add_integral - 增加某个用户的积分[admin]\n/deduct_integral - 扣除某个用户的积分[admin]")
 
 @bot.message_handler(commands=["sign"])
 def send_welcome(message):
@@ -39,9 +39,7 @@ def send_welcome(message):
         URL = proxys.subconvert(proxy)
         markup = types.InlineKeyboardMarkup()
         subconverts = types.InlineKeyboardButton("订阅转换", url=URL)
-        btn2 = types.InlineKeyboardButton("倾城极速", url="https://qcjs.pro")
-        btn3 = types.InlineKeyboardButton("新生机场", url="https://hs114514.tech")
-        markup.add(subconverts, btn2, btn3)
+        markup.add(subconverts)
         bot.send_message(message.chat.id, proxy, reply_markup=markup)
     else:
         bot.send_message(message.chat.id, "积分不足！")
@@ -51,11 +49,7 @@ def send_welcome(message):
     deduct = user.deduct_points(message.chat.id)
     if deduct:
         proxy = proxys.get_tgproxy()
-        markup = types.InlineKeyboardMarkup()
-        btn2 = types.InlineKeyboardButton("倾城极速", url="https://qcjs.pro")
-        btn3 = types.InlineKeyboardButton("新生机场", url="https://hs114514.tech")
-        markup.add(btn2, btn3)
-        bot.send_message(message.chat.id, proxy, reply_markup=markup) 
+        bot.send_message(message.chat.id, proxy) 
     else:
         bot.send_message(message.chat.id, "积分不足！")
 
